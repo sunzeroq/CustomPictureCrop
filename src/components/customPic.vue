@@ -17,7 +17,7 @@
         <canvas
           ref="customCanvas"
           id="custom"
-          style="width:100%;"
+          style="width:30%;"
           @click="savePoints"
           @mousemove="saveMouse"
           @dblclick.prevent="complete"
@@ -28,9 +28,9 @@
     </div>
   </div>
 </template>
-<script src="../utils/canvas2image.js"></script>
-
+ 
 <script>
+import { Canvas2Image } from "../utils/canvas2image.js";
 export default {
   props: {
     show: {
@@ -208,10 +208,11 @@ export default {
 <style lang="scss" scoped>
 .custom-container {
   background-color: #ffffff;
+  width: 1000px;
+  height: 500px;
   .custom-draw-header {
     position: absolute;
     z-index: 10004;
-    top: -32px;
     right: 0;
     .custom-draw-buttons {
       display: flex;

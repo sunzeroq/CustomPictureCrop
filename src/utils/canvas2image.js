@@ -217,7 +217,7 @@ var Canvas2Image = function () {
                 var strData = genBitmapImage(data);
                 saveFile(makeURI(strData, downloadMime));
             } else {
-                var strData = getDataURL(canvas, type, width, height);
+                strData = getDataURL(canvas, type, width, height);
                 saveFile(strData.replace(type, downloadMime));
             }
         }
@@ -238,7 +238,7 @@ var Canvas2Image = function () {
                 var strData = genBitmapImage(data);
                 return genImage(makeURI(strData, 'image/bmp'));
             } else {
-                var strData = getDataURL(canvas, type, width, height);
+                strData = getDataURL(canvas, type, width, height);
                 return genImage(strData);
             }
         }
@@ -277,3 +277,6 @@ var Canvas2Image = function () {
     };
 
 }();
+export {
+    Canvas2Image
+}
