@@ -1,19 +1,19 @@
 <template>
-  <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png" /> -->
-    <custom-draw
-      v-if="s"
-      :show="a"
-      :imgUrl="url"
-      :proportion="c"
-      @out-picture="out"
-      @close-custom="close"
-      :update:newUrl="newUrl"
-    ></custom-draw>
-    <canvas id="canvasDemo"></canvas>
-    <button @click="open">aaa</button>
-    <img src="newUrl" />
-  </div>
+    <div>
+        <div class="draw-container">
+            <custom-draw
+                v-if="state"
+                :imgUrl="url"
+                :proportion="p"
+                @out-picture="out"
+                @close-custom="close"
+                :newUrl.sync="newUrl"
+            ></custom-draw>
+        </div>
+        <div class="preview-container" v-show="splitState">
+            <img :src="newUrl" />
+        </div>
+    </div>
 </template>
 
 <script>
@@ -21,46 +21,43 @@
 import CustomDraw from "@/components/customPic.vue";
 
 export default {
-  name: "Home",
-  components: { CustomDraw },
-  data() {
-    return {
-      a: false,
-      url: "/logo.png",
-      c: 1,
-      imgUrl: "",
-      s: false,
-      newUrl: ""
-    };
-  },
-  mounted() {
-    this.init();
-  },
-  methods: {
-    init() {
-      let canvas = document.getElementById("canvasDemo");
-      let context = canvas.getContext("2d");
-      let w = canvas.offsetWidth;
-      let h = w;
-      canvas.width = w;
-      canvas.height = h;
-      let img = new Image();
-      img.src = this.url;
-
-      console.log(img);
-
-      img.onload = function() {
-        context.drawImage(img, 0, 0, w, h);
-        this.imgUrl = canvas.toDataURL();
-      };
+    name: "Home",
+    components: { CustomDraw },
+    data() {
+        return {
+            url: "/logo.png",
+            p: 1,
+            imgUrl: "",
+            state: false,
+            newUrl: "",
+            splitState: false
+        };
     },
-    open() {
-      this.s = true;
+    mounted() {
+        this.open();
     },
-    out() {
-      console.log(this.newUrl);
-    },
-    close() {}
-  }
+    methods: {
+        open() {
+            this.state = true;
+        },
+        out() {
+            // console.log(this.newUrl);
+            this.splitState = true;
+        },
+        close() {
+            this.splitState = false;
+        }
+    }
 };
 </script>
+<style scoped>
+.draw-container {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+}
+.preview-container {
+    position: absolute;
+    right: 0px;
+}
+</style>
