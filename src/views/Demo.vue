@@ -1,14 +1,15 @@
 <template>
     <div>
         <div class="draw-container">
-            <custom-draw
+            <custom-crop
                     :imgUrl="url"
                     :proportion="proportion"
                     :headerState="true"
                     :newUrl.sync="newUrl"
+                    :width="width"
                     @out-picture="out"
                     @reset="reset"
-            ></custom-draw>
+            ></custom-crop>
         </div>
         <div class="preview-container" v-show="splitState">
             <img v-if="newUrl" :src="newUrl" alt="resultImg"/>
@@ -17,15 +18,15 @@
 </template>
 
 <script>
-import CustomDraw from "@/components/customPic.vue";
 
 export default {
     name: "Demo",
-    components: { CustomDraw },
+    components: { },
     data() {
         return {
             url: "/logo.png",
             proportion: 1,
+            width: "1200px",
             imgUrl: "",
             state: false,
             newUrl: {
