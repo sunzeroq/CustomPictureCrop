@@ -1,24 +1,14 @@
 # vue-demo
 
-## Project setup
 ```
-npm install
-```
+<custom-draw
+        url: string //传入图片的base64 URL
+        proportion：number  //长宽比（canvas）
+        //抛出一些事件
+        @out-picture：function
+        @close-custom： function
+        //抛出裁剪后图片的base64 URL
+        :newUrl.sync= string
+></custom-draw>
 
-### Compiles and hot-reloads for development
 ```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

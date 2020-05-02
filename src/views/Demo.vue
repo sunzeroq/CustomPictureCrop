@@ -2,62 +2,65 @@
     <div>
         <div class="draw-container">
             <custom-draw
-                v-if="state"
-                :imgUrl="url"
-                :proportion="p"
-                @out-picture="out"
-                @close-custom="close"
-                :newUrl.sync="newUrl"
+                    :imgUrl="url"
+                    :proportion="proportion"
+                    :headerState="true"
+                    :newUrl.sync="newUrl"
+                    @out-picture="out"
+                    @reset="reset"
             ></custom-draw>
         </div>
         <div class="preview-container" v-show="splitState">
-            <img :src="newUrl" />
+            <img v-if="newUrl" :src="newUrl" alt="resultImg"/>
         </div>
     </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import CustomDraw from "@/components/customPic.vue";
 
 export default {
-    name: "Home",
+    name: "Demo",
     components: { CustomDraw },
     data() {
         return {
             url: "/logo.png",
-            p: 1,
+            proportion: 1,
             imgUrl: "",
             state: false,
-            newUrl: "",
-            splitState: false
+            newUrl: {
+                type: String,
+                default: null,
+            },
+            splitState: false,
+            canvasState: true,
         };
     },
     mounted() {
-        this.open();
+        this.open()
     },
     methods: {
         open() {
-            this.state = true;
+            this.state = true
         },
         out() {
             // console.log(this.newUrl);
-            this.splitState = true;
+            this.splitState = true
         },
-        close() {
-            this.splitState = false;
-        }
+        reset() {
+            this.splitState = false
+        },
     }
 };
 </script>
 <style scoped>
 .draw-container {
-    position: absolute;
+    position: relative;
     width: 50%;
     height: 50%;
 }
 .preview-container {
     position: absolute;
-    right: 0px;
+    right: 0;
 }
 </style>
