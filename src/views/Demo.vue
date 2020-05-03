@@ -24,7 +24,7 @@ export default {
     components: { },
     data() {
         return {
-            url: "/logo.png",
+            url: "./logo.png",
             proportion: 1,
             width: "1200px",
             imgUrl: "",
