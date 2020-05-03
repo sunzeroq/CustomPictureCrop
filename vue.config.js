@@ -12,9 +12,10 @@ module.exports = {
                 'components': '@/components',
                 'views': '@/views',
                 'utils': '@/utils',
+                'lib': '@/lib',
                 '@': resolve('src')
             }
-        }
+        },
     },
     publicPath: './',
     outputDir: 'dist',

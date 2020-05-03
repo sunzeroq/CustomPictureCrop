@@ -18,13 +18,14 @@
 </template>
 
 <script>
+import demoImg from '../assets/img/logo.png'
 
 export default {
     name: "Demo",
     components: { },
     data() {
         return {
-            url: "./logo.png",
+            url: demoImg,
             proportion: 1,
             width: "1200px",
             imgUrl: "",
