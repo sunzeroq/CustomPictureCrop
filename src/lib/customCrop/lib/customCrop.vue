@@ -40,7 +40,7 @@
 </template>
  
 <script>
-import { Canvas2Image } from "@/utils/canvas2image";
+import { Canvas2Image } from "./canvas2image";
 export default {
     props: {
         imgUrl: {
