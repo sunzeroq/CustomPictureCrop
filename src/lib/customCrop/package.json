@@ -1,0 +1,26 @@
+{
+    "name": "v-custom-crop",
+    "version": "0.1.2",
+    "description": "vue picture custom crop",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sunzeroq/CustomPicture.git"
+    },
+    "main": "index.js",
+    "directories": {
+        "lib": "lib"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "v-custom-crop",
+        "image",
+        "crop",
+        "clip",
+        "custom",
+        "vue"
+    ],
+    "author": "sunzeroq",
+    "license": "ISC"
+}

@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import vCustomCrop from "@/lib/customCrop/lib";
+import vCustomCrop from "v-custom-crop";
 // 使用插件
 Vue.use(vCustomCrop);
 
