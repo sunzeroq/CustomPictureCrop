@@ -1,16 +1,26 @@
-# Vue Custom Picture Crop
+# Custom-Picture-Crop
+A Picture(base64) custom shape clipping vue component.
+           
 
+## Github Page Demo 
 [Demo](https://sunzeroq.github.io/CustomPicture/dist/index.html)
+
+## Install
+```
+npm i v-custom-crop
+```
+## Usage
+```
+import vCustomCrop from "v-custom-crop";
+Vue.use(vCustomCrop);
+```
 
 ```
 <custom-crop
-        url: string //传入图片的base64 URL
-        proportion：number  //长宽比（canvas）
-        //抛出一些事件
+        url: string  //base64 image
+        proportion：number  
         @out-picture：function
         @close-custom： function
-        //抛出裁剪后图片的base64 URL
-        :newUrl.sync= string
+        :newUrl.sync= string  //base64 image
 ></custom-crop>
-
 ```
