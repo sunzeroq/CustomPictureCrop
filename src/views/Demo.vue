@@ -64,5 +64,6 @@ export default {
 .preview-container {
     position: absolute;
     right: 0;
+    top: 60px;
 }
 </style>
