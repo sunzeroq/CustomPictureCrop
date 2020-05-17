@@ -8,7 +8,7 @@ A Picture(base64) custom shape clipping vue component.
 2. Double click or click the complete button to finish. 
 3. Click the save button to get the picture.
 
-![PreviewPic](https://github.com/sunzeroq/CustomPicture/tree/master/src/assets/img/demo.jpg)
+![PreviewPic](https://github.com/sunzeroq/CustomPicture/blob/master/src/assets/img/demo.jpg)
 
 ## Install
 ```
@@ -29,7 +29,7 @@ Vue.use(vCustomCrop);
         :newUrl.sync= string  //base64 image
 ></custom-crop>
 ```
-##Todo
+## Todo
 
 - [ ] Image custom crop(1.0.0)
     - [ ] Custom border line style
