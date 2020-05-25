@@ -22,16 +22,25 @@ Vue.use(vCustomCrop);
 
 ```
 <custom-crop
-        url: string  //base64 image
-        proportion：number  
-        @out-picture：function
-        @close-custom： function
-        :newUrl.sync= string  //base64 image
+        url: String  //Base64 Data
+        proportion：Number  
+        @out-picture：Function
+        @close-custom： Function
+        :newUrl.sync: String  //Base64 Data 
+        :line-color: String
 ></custom-crop>
 ```
+
+```
+line-color = "orange";
+line-color = "#FFA500";
+line-color = "rgb(255,165,0)";
+line-color = "rgba(255,165,0,1)";
+```
+
 ## Todo
 
-- [ ] Image custom crop(1.0.0)
-    - [ ] Custom border line style
+- [ ] Image custom crop(0.2.0)
+    - [X] Custom border line style
     - [ ] Custom canvas position
-- [ ] Video custom crop(2.0.0)
+- [ ] Video custom crop(1.0.0)

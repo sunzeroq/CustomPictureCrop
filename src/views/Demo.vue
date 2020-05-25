@@ -7,6 +7,7 @@
                     :headerState="true"
                     :newUrl.sync="newUrl"
                     :width="width"
+                    :line-color="lineColor"
                     @out-picture="out"
                     @reset="reset"
             ></custom-crop>
@@ -29,6 +30,7 @@ export default {
             proportion: 1,
             width: "1200px",
             imgUrl: "",
+            lineColor: "rgba(45, 122, 245)",
             state: false,
             newUrl: {
                 type: String,

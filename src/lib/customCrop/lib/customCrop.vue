@@ -62,7 +62,11 @@ export default {
         canvasState: {
             type: Boolean,
             default: true,
-        }
+        },
+        lineColor: {
+            type: String,
+            default: 'rgba(45, 183, 245, 1.0)'
+        },
 
     },
     components: {},
@@ -131,6 +135,7 @@ export default {
             //绘制已确定位置的线
             let p = this.points
             context.lineWidth = 2
+            context.strokeStyle = this.lineColor
             context.lineJoin = "round"
             for (let i = 0; i < p.length; i++) {
                 context.lineTo(p[i].x, p[i].y)
