@@ -3,18 +3,6 @@
             v-show="canvasState"
             class="custom-container"
     >
-        <div class="custom-draw-header" v-show="headerState">
-            <div class="custom-draw-buttons">
-                <button @click="complete" :disabled="!status">完成</button>
-                <button @click="cancel" :disabled="!status">撤销</button>
-                <button @click="outPic" :disabled="status">出图</button>
-                <button @click="reset">重置</button>
-<!--                <button @click="close">关闭</button>-->
-            </div>
-            <div class="custom-draw-info">
-                <span>操作说明:1.单击开始绘制边框2.在最后一点处双击完成3.点击出图,查看或保存图片</span>
-            </div>
-        </div>
         <div
                 class="custom-draw-content"
                 :style="{ width: width }"
@@ -67,7 +55,6 @@ export default {
             type: String,
             default: 'rgba(45, 183, 245, 1.0)'
         },
-
     },
     components: {},
     name: "customCrop",
@@ -200,13 +187,13 @@ export default {
             let imageWidth = canvas.offsetWidth
             let imageHeight = imageWidth / this.proportion
             //转换图片
-            let genimg = Canvas2Image.convertToImage(
+            let img = Canvas2Image.convertToImage(
                 canvas,
                 imageWidth,
                 imageHeight,
                 "png",
             );
-            this.newImg = genimg.src
+            this.newImg = img.src
         },
         close() {
             this.$emit("close-custom")
@@ -224,7 +211,7 @@ export default {
                 this.status = true
             }
         }
-    }
+    },
 };
 </script>
 <style lang="scss" scoped>

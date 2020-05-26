@@ -1,13 +1,25 @@
 <template>
     <div>
         <div class="draw-container">
+<!--            <div class="custom-draw-header" v-show="headerState">-->
+<!--                <div class="custom-draw-buttons">-->
+<!--                    <button @click="complete" :disabled="!status">完成</button>-->
+<!--                    <button @click="cancel" :disabled="!status">撤销</button>-->
+                    <button @click="outPic">GetPic</button>
+                    <button @click="reset">Reset</button>
+<!--                    <button @click="close">关闭</button>-->
+<!--                </div>-->
+
+<!--            </div>-->
             <custom-crop
+                    ref="crop"
                     :imgUrl="url"
                     :proportion="proportion"
                     :headerState="true"
                     :newUrl.sync="newUrl"
                     :width="width"
                     :line-color="lineColor"
+                    :picState="picState"
                     @out-picture="out"
                     @reset="reset"
             ></custom-crop>
@@ -38,6 +50,7 @@ export default {
             },
             splitState: false,
             canvasState: true,
+            picState: false
         };
     },
     mounted() {
@@ -52,8 +65,13 @@ export default {
             this.splitState = true
         },
         reset() {
+            this.$refs['crop'].reset()
             this.splitState = false
         },
+        outPic() {
+            this.splitState = true
+            this.$refs['crop'].outPic()
+        }
     }
 };
 </script>
