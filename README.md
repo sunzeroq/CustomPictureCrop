@@ -43,4 +43,8 @@ line-color = "rgba(255,165,0,1)";
 - [ ] Image custom crop(0.2.0)
     - [X] Custom border line style
     - [ ] Custom canvas position
-- [ ] Video custom crop(1.0.0)
+    - [ ] Custom background color
+- [ ] Regular pattern clipping(0.3.0)
+    - [ ] Rectangular box clipping 
+    - [ ] Clipping box for other shapes 
+
