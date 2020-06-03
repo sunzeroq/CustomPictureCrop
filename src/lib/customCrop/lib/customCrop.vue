@@ -7,7 +7,10 @@
                 class="custom-draw-content"
                 :style="{ width: width }"
         >
-            <div ref="canvasDiv" class="custom-canvas">
+            <div
+                    ref="canvasDiv"
+                    class="custom-canvas"
+            >
                 <canvas
                     ref="customCanvas"
                     id="custom"
@@ -35,6 +38,18 @@ export default {
             type: String,
             default: "",
         },
+        width: {
+            type: String
+        },
+        canvasSize: {
+            type: Object,
+            default: function () {
+                return {
+                    height: 200,
+                    width: 200,
+                }
+            }
+        },
         proportion: {
             type: Number,
             default: 1,
@@ -43,10 +58,7 @@ export default {
             type: Boolean,
             default: true,
         },
-        width: {
-            type: String,
-            default: "1980px",
-        },
+
         canvasState: {
             type: Boolean,
             default: true,
@@ -78,7 +90,8 @@ export default {
         saveMouse(e) {
             this.mouse = { x: e.layerX, y: e.layerY }
         },
-        //设置canvas相关
+        //设置canvas相关 canvas 宽高
+        //todo
         setCanvas(id) {
             let canvas = document.getElementById(id)
             let context = canvas.getContext("2d")
@@ -217,9 +230,11 @@ export default {
 <style lang="scss" scoped>
 .custom-container {
     background-color: #ffffff;
-    width: 1000px;
-    height: 500px;
+    position: relative;
     .custom-draw-header {
+        position: relative;
+        width: 100%;
+        height: 100%;
         z-index: 10004;
         right: 0;
         .custom-draw-buttons {
@@ -236,9 +251,15 @@ export default {
         }
     }
     .custom-draw-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
         user-select: none;
         z-index: 10003;
         background-color: #ffffff;
+        .custom-canvas {
+            position: relative;
+        }
     }
 }
 </style>

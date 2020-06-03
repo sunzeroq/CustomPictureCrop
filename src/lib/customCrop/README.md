@@ -22,6 +22,7 @@ Vue.use(vCustomCrop);
 
 ```
 <custom-crop
+        ref="crop"
         url: String  //Base64 Data
         proportion：Number  
         @out-picture：Function
@@ -29,21 +30,36 @@ Vue.use(vCustomCrop);
         :newUrl.sync: String  //Base64 Data 
         :line-color: String
 ></custom-crop>
-```
 
+this.$refs['crop'].reset()
+this.$refs['crop'].outPic()
+```
+Line Color
 ```
 line-color = "orange";
 line-color = "#FFA500";
 line-color = "rgb(255,165,0)";
 line-color = "rgba(255,165,0,1)";
 ```
+Set position and size
 
+```
+<div class="canvas-container">
+    <custom-crop></custom-crop>
+</div>
+<style>
+    .canvas-container {
+        width: '100px',
+        height: '100px',
+    }
+</style>
+```
 ## Todo
 
-- [ ] Image custom crop(0.2.0)
+- [X] Image custom crop(0.2.0)
     - [X] Custom border line style
-    - [ ] Custom canvas position
-    - [ ] Custom background color
+    - [X] Custom canvas position
+    - [X] Custom background color
 - [ ] Regular pattern clipping(0.3.0)
     - [ ] Rectangular box clipping 
     - [ ] Clipping box for other shapes 

@@ -14,14 +14,12 @@
             <custom-crop
                     ref="crop"
                     :imgUrl="url"
+                    :size="canvasSize"
                     :proportion="proportion"
                     :headerState="true"
                     :newUrl.sync="newUrl"
-                    :width="width"
                     :line-color="lineColor"
                     :picState="picState"
-                    @out-picture="out"
-                    @reset="reset"
             ></custom-crop>
         </div>
         <div class="preview-container" v-show="splitState">
@@ -39,6 +37,10 @@ export default {
     data() {
         return {
             url: demoImg,
+            canvasSize: {
+                width: 500,
+                height: 500,
+            },
             proportion: 1,
             width: "1200px",
             imgUrl: "",
@@ -60,10 +62,6 @@ export default {
         open() {
             this.state = true
         },
-        out() {
-            // console.log(this.newUrl);
-            this.splitState = true
-        },
         reset() {
             this.$refs['crop'].reset()
             this.splitState = false
@@ -78,8 +76,8 @@ export default {
 <style scoped>
 .draw-container {
     position: relative;
-    width: 50%;
-    height: 50%;
+    width: 800px;
+    height: 800px;
 }
 .preview-container {
     position: absolute;
