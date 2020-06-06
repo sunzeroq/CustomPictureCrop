@@ -59,7 +59,7 @@ Set position and size
 - [X] Image custom crop(0.2.0)
     - [X] Custom border line style
     - [X] Custom canvas position
-    - [X] Custom background color
+    - [ ] Custom background color
 - [ ] Regular pattern clipping(0.3.0)
     - [ ] Rectangular box clipping 
     - [ ] Clipping box for other shapes 
