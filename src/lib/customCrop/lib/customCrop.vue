@@ -24,7 +24,7 @@
                     id="buffer"
                     style="width:100%;opacity:0;position:absolute;"
                 ></canvas>
-                <canvas ref="clipCanvas" id="clip" style="width:100%;opacity:0;position:absolute;"></canvas>
+                <canvas ref="clipCanvas" id="clip" style="width:100%;opacity:1;position:absolute;"></canvas>
             </div>
         </div>
     </div>
@@ -186,8 +186,23 @@ export default {
                 this.loadCanvas()
             }
         },
+        getCanvas(id) {
+            let canvas = document.getElementById(id)
+            let context = canvas.getContext("2d")
+            let w = canvas.offsetWidth
+            let h = w / this.proportion
+            return [context, w, h, canvas]
+        },
         outPic() {
-            let canvas = document.getElementById("clip")
+            let [context, w, h , canvas] = this.getCanvas("clip")
+            let data = context.getImageData(0, 0, w, h).data
+            // for (let i = 0; i < data.length; i += 4) {
+                // if (data[i] === 0) {
+                //     data[i] =
+                // }
+            // }
+            // let rgbaColor = []
+            // console.log(data)
             this.canvasToImg(canvas)
             //更新pic
             this.$emit("update:newUrl", this.newImg)
