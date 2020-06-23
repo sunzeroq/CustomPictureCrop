@@ -12,6 +12,7 @@
                     :newUrl.sync="newUrl"
                     :line-color="lineColor"
                     :picState="picState"
+                    :background-color="backgroundColor"
             ></custom-crop>
         </div>
         <div class="preview-container" v-show="splitState">
@@ -44,7 +45,8 @@ export default {
             },
             splitState: false,
             canvasState: true,
-            picState: false
+            picState: false,
+            backgroundColor: [0, 255, 255, 255]
         };
     },
     mounted() {
