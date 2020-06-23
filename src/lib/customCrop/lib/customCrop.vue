@@ -24,7 +24,8 @@
                     id="buffer"
                     style="width:100%;opacity:0;position:absolute;"
                 ></canvas>
-                <canvas ref="clipCanvas" id="clip" style="width:100%;opacity:0;position:absolute;"></canvas>
+                <canvas ref="clipCanvas" id="clip" style="width:100%;opacity:1;position:absolute;"></canvas>
+                <canvas ref="resultCanvas" id="result" style="width:100%;opacity:1;position:absolute;top:800px;"></canvas>
             </div>
         </div>
     </div>
@@ -67,6 +68,12 @@ export default {
             type: String,
             default: 'rgba(45, 183, 245, 1.0)'
         },
+        backgroundColor: {
+            type: Array,
+            default() {
+                return [0, 0, 0, 0]
+            }
+        }
     },
     components: {},
     name: "customCrop",
@@ -186,14 +193,37 @@ export default {
                 this.loadCanvas()
             }
         },
+        getCanvas(id) {
+            let canvas = document.getElementById(id)
+            let context = canvas.getContext("2d")
+            let w = canvas.offsetWidth
+            let h = w / this.proportion
+            return [context, w, h, canvas]
+        },
         outPic() {
-            let canvas = document.getElementById("clip")
+            let [context, w, h , canvas] = this.getCanvas("clip")
+            canvas = this.replaceBackground(context)
             this.canvasToImg(canvas)
             //更新pic
             this.$emit("update:newUrl", this.newImg)
             //出图
             this.$emit("out-picture")
             this.clearWatchDog()
+        },
+        replaceBackground(sourceContext) {
+            let [context, w, h , canvas] = this.setCanvas("result")
+            let [R, G, B, A] = this.backgroundColor
+            let data = sourceContext.getImageData(0, 0, w, h)
+            for (let i = 3; i < data.data.length; i += 4) {
+                if (data.data[i] === 0) {
+                    data.data[i - 3] = R
+                    data.data[i - 2] = G
+                    data.data[i - 1] = B
+                    data.data[i] = A
+                }
+            }
+            context.putImageData(data, 0, 0)
+            return canvas
         },
         canvasToImg(canvas) {
             //只需要定义图片的宽度（高度计算得到）

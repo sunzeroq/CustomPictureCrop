@@ -1,16 +1,8 @@
 <template>
     <div>
         <div class="draw-container">
-<!--            <div class="custom-draw-header" v-show="headerState">-->
-<!--                <div class="custom-draw-buttons">-->
-<!--                    <button @click="complete" :disabled="!status">完成</button>-->
-<!--                    <button @click="cancel" :disabled="!status">撤销</button>-->
-                    <button @click="outPic">GetPic</button>
-                    <button @click="reset">Reset</button>
-<!--                    <button @click="close">关闭</button>-->
-<!--                </div>-->
-
-<!--            </div>-->
+            <button @click="outPic">GetPic</button>
+            <button @click="reset">Reset</button>
             <custom-crop
                     ref="crop"
                     :imgUrl="url"
@@ -20,6 +12,7 @@
                     :newUrl.sync="newUrl"
                     :line-color="lineColor"
                     :picState="picState"
+                    :background-color="backgroundColor"
             ></custom-crop>
         </div>
         <div class="preview-container" v-show="splitState">
@@ -52,7 +45,8 @@ export default {
             },
             splitState: false,
             canvasState: true,
-            picState: false
+            picState: false,
+            backgroundColor: [0, 255, 255, 255]
         };
     },
     mounted() {
@@ -80,7 +74,8 @@ export default {
     height: 800px;
 }
 .preview-container {
-    position: absolute;
+    display: block;
+    position: relative;
     right: 0;
     top: 60px;
 }
