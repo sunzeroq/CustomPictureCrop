@@ -24,8 +24,8 @@
                     id="buffer"
                     style="width:100%;opacity:0;position:absolute;"
                 ></canvas>
-                <canvas ref="clipCanvas" id="clip" style="width:100%;opacity:1;position:absolute;"></canvas>
-                <canvas ref="resultCanvas" id="result" style="width:100%;opacity:1;position:absolute;top:800px;"></canvas>
+                <canvas ref="clipCanvas" id="clip" style="width:100%;opacity:0;position:absolute;"></canvas>
+                <canvas ref="resultCanvas" id="result" style="width:100%;opacity:0;position:absolute;"></canvas>
             </div>
         </div>
     </div>
@@ -69,10 +69,8 @@ export default {
             default: 'rgba(45, 183, 245, 1.0)'
         },
         backgroundColor: {
-            type: Array,
-            default() {
-                return [0, 0, 0, 0]
-            }
+            type: String,
+            default: 'rgba(45, 183, 245, 1.0)'
         }
     },
     components: {},
@@ -210,16 +208,23 @@ export default {
             this.$emit("out-picture")
             this.clearWatchDog()
         },
+        colorToArray(color) {
+            let str = /(.+)?[(（](.+)(?=[)）])/.exec(color)
+            let arr = str[2].split(',')
+            let a = Number(arr.pop())
+            arr.push(String(Math.floor(a * 255)))
+            return arr
+        },
         replaceBackground(sourceContext) {
             let [context, w, h , canvas] = this.setCanvas("result")
-            let [R, G, B, A] = this.backgroundColor
+            let [R, G, B, A] = this.colorToArray(this.backgroundColor)
             let data = sourceContext.getImageData(0, 0, w, h)
             for (let i = 3; i < data.data.length; i += 4) {
                 if (data.data[i] === 0) {
-                    data.data[i - 3] = R
-                    data.data[i - 2] = G
-                    data.data[i - 1] = B
-                    data.data[i] = A
+                    data.data[i - 3] = Number(R)
+                    data.data[i - 2] = Number(G)
+                    data.data[i - 1] = Number(B)
+                    data.data[i] = Number(A)
                 }
             }
             context.putImageData(data, 0, 0)
