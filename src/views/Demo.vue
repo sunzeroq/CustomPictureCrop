@@ -1,24 +1,35 @@
 <template>
-    <div>
-        <div class="draw-container">
-            <button @click="outPic">GetPic</button>
-            <button @click="reset">Reset</button>
-            <custom-crop
-                    ref="crop"
-                    :imgUrl="url"
-                    :size="canvasSize"
-                    :proportion="proportion"
-                    :headerState="true"
-                    :newUrl.sync="newUrl"
-                    :line-color="lineColor"
-                    :picState="picState"
-                    :background-color="backgroundColor"
-            ></custom-crop>
-        </div>
+    <div class="draw-container">
+
+        <custom-crop
+                ref="crop"
+                :imgUrl="url"
+                :size="canvasSize"
+                :proportion="proportion"
+                :headerState="true"
+                :newUrl.sync="newUrl"
+                :line-color="lineColor"
+                :picState="picState"
+                :background-color="backgroundColor"
+        ></custom-crop>
         <div class="preview-container" v-show="splitState">
             <img v-if="newUrl" :src="newUrl" alt="resultImg"/>
         </div>
+        <div class="draw-tool-content">
+            <Button @click="outPic">GetPic</Button>
+            <Button @click="reset">Reset</Button>
+            <span>
+                lineColor
+                <ColorPicker v-model="lineColor" alpha />
+            </span>
+            <span>
+                backgroundColor
+                <ColorPicker v-model="backgroundColor" alpha />
+                {{color}}
+            </span>
+        </div>
     </div>
+
 </template>
 
 <script>
@@ -37,7 +48,7 @@ export default {
             proportion: 1,
             width: "1200px",
             imgUrl: "",
-            lineColor: "rgba(45, 122, 245)",
+            lineColor: "rgba(45, 122, 245, 1)",
             state: false,
             newUrl: {
                 type: String,
@@ -46,7 +57,7 @@ export default {
             splitState: false,
             canvasState: true,
             picState: false,
-            backgroundColor: [0, 255, 255, 255]
+            backgroundColor: "rgba(45, 122, 245, 0)",
         };
     },
     mounted() {
@@ -67,16 +78,18 @@ export default {
     }
 };
 </script>
-<style scoped>
+<style scoped lang="scss">
 .draw-container {
     position: relative;
-    width: 800px;
-    height: 800px;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
 }
-.preview-container {
-    display: block;
-    position: relative;
-    right: 0;
-    top: 60px;
+
+.draw-tool-content {
+    margin-right: 200px;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
 }
 </style>

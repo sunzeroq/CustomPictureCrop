@@ -8,6 +8,10 @@ import vCustomCrop from "./lib/customCrop";
 // 使用插件
 Vue.use(vCustomCrop);
 
+import ViewUI from 'view-design';
+import 'view-design/dist/styles/iview.css';
+Vue.use(ViewUI);
+
 Vue.config.productionTip = false
 
 new Vue({
