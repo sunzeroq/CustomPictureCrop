@@ -168,6 +168,7 @@ export default {
             this.updateImg(context, w, h)
             this.status = false
             this.clearWatchDog()
+            this.$emit("complete")
         },
         canvasClip(context) {
             context.beginPath()
@@ -290,7 +291,6 @@ export default {
         width: 100%;
         height: 100%;
         user-select: none;
-        z-index: 10003;
         background-color: #ffffff;
         .custom-canvas {
             position: relative;

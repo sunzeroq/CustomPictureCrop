@@ -3,7 +3,7 @@ A Picture(base64) custom shape clipping vue component.
            
 
 ## Github Page Demo 
-[Demo](https://sunzeroq.github.io/CustomPicture/dist/index.html)
+[Demo](https://sunzeroq.github.io/CustomPictureCrop/index.html)
 1. Click to draw the border line.
 2. Double click or click the complete button to finish. 
 3. Click the save button to get the picture.

@@ -11,12 +11,14 @@
                 :line-color="lineColor"
                 :picState="picState"
                 :background-color="backgroundColor"
+                @complete="controlState"
         ></custom-crop>
-        <div class="preview-container" v-show="splitState">
-            <img v-if="newUrl" :src="newUrl" alt="resultImg"/>
-        </div>
+
         <div class="draw-tool-content">
-            <Button @click="outPic">GetPic</Button>
+            <span>单击开始绘制边框-->在最后一点处双击完成/点击compelte-->点击getPic出图(移动端未优化</span>
+            <Button @click="cancel" :disabled="!state">Cancel</Button>
+            <Button @click="complete" :disabled="!state">Complete</Button>
+            <Button @click="outPic" :disabled="state">GetPic</Button>
             <Button @click="reset">Reset</Button>
             <span>
                 lineColor
@@ -25,8 +27,11 @@
             <span>
                 backgroundColor
                 <ColorPicker v-model="backgroundColor" alpha />
-                {{color}}
             </span>
+        </div>
+
+        <div class="preview-container" v-show="splitState">
+            <img v-if="newUrl" :src="newUrl" alt="resultImg"/>
         </div>
     </div>
 
@@ -49,7 +54,7 @@ export default {
             width: "1200px",
             imgUrl: "",
             lineColor: "rgba(45, 122, 245, 1)",
-            state: false,
+            state: true,
             newUrl: {
                 type: String,
                 default: null,
@@ -65,15 +70,28 @@ export default {
     },
     methods: {
         open() {
-            this.state = true
+            // this.state = true
         },
         reset() {
             this.$refs['crop'].reset()
             this.splitState = false
+            this.state = true
+        },
+        complete() {
+            if (this.state) {
+                this.$refs['crop'].complete()
+                this.state = false
+            }
         },
         outPic() {
             this.splitState = true
             this.$refs['crop'].outPic()
+        },
+        cancel() {
+            this.$refs['crop'].cancel()
+        },
+        controlState() {
+            this.state = false
         }
     }
 };
@@ -83,11 +101,13 @@ export default {
     position: relative;
     display: flex;
     display: -webkit-flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .draw-tool-content {
-    margin-right: 200px;
+    width: 200px;
+    margin: 20px;
+    z-index: 1;
     display: -webkit-flex;
     display: flex;
     flex-direction: column;
